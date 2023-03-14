@@ -1,5 +1,12 @@
 #import "AppDelegate.h"
 #import "GeneratedPluginRegistrant.h"
+#include "TSCSDK.h"
+//#include <TSCLIB/TSCLIB.h>
+
+TSCSDK *lib;
+NSMutableArray* deviceList;
+CBPeripheral* CP;
+NSString *TargetName;
 
 @implementation AppDelegate
 
@@ -80,7 +87,7 @@ if (![printingstring isKindOfClass:[NSString class]]) {
 
 //- (IBAction)send:(UIButton *)sender
 - (void) tscTestPrint:(NSString *)myString {
-    
+    /*
     for(int i=0;i<deviceList.count;i++)
     {
         //NSLog(@"peripheral\n%@\n",deviceList[i]);
@@ -88,8 +95,9 @@ if (![printingstring isKindOfClass:[NSString class]]) {
         {
             [lib openportBLE:((CBPeripheral *)deviceList[i])];
         }
-    }
+    } */
     
+    [lib openportMFI:@"com.issc.datapath"];
     //NSData *status = [lib printer_status];
     //0x00:Normal, 0x01:Head opened, 0x10:Pause
     
