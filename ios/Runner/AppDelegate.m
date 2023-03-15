@@ -3,7 +3,7 @@
 #include "TSCSDK.h"
 //#include <TSCLIB/TSCLIB.h>
 
-TSCSDK *lib;
+TSCSDK *lib = [TSCSDK new];
 NSMutableArray* deviceList;
 CBPeripheral* CP;
 NSString *TargetName;
@@ -25,31 +25,32 @@ NSString *TargetName;
   if ([@"getBluetooth" isEqualToString:call.method]) {
     
     NSArray *args = call.arguments;
-if (![args isKindOfClass:[NSArray class]]) {
-    return;
-}
+    if (![args isKindOfClass:[NSArray class]]) {
+     return;
+    }
 
-NSDictionary *firstArg = args[0];
-if (![firstArg isKindOfClass:[NSDictionary class]]) {
-    return;
-}
+    NSDictionary *firstArg = args[0];
+    if (![firstArg isKindOfClass:[NSDictionary class]]) {
+     return;
+    }
 
-NSString *blePrinter = firstArg[@"mac"];
-if (![blePrinter isKindOfClass:[NSString class]]) {
-    return;
-}
+     NSString *blePrinter = firstArg[@"mac"];
+    if (![blePrinter isKindOfClass:[NSString class]]) {
+     return;
+    }
 
-NSDictionary *secondArg = args[1];
-if (![secondArg isKindOfClass:[NSDictionary class]]) {
-    return;
-}
+     NSDictionary *secondArg = args[1];
+    if (![secondArg isKindOfClass:[NSDictionary class]]) {
+     return;
+    }
 
-NSString *printingstring = secondArg[@"print"];
-if (![printingstring isKindOfClass:[NSString class]]) {
-    return;
-}
-      [weakSelf viewLoad];
-     [weakSelf tscTestPrint: blePrinter];
+    NSString *printingstring = secondArg[@"print"];
+    if (![printingstring isKindOfClass:[NSString class]]) {
+     return;
+    }
+
+    [weakSelf viewLoad];
+    [weakSelf tscTestPrint: blePrinter];
     int batteryLevel = [weakSelf getBatteryLevel];
 
     if (batteryLevel == -1) {
@@ -102,7 +103,7 @@ if (![printingstring isKindOfClass:[NSString class]]) {
     //0x00:Normal, 0x01:Head opened, 0x10:Pause
     
     [lib sendCommand:@"DIRECION 1\r\n"];
-    //[lib setup:@"100" height:@"120" speed:@"4" density:@"10" sensor:@"0" vertical:@"2" offset:@"0"];
+    [lib setup:@"100" height:@"120" speed:@"4" density:@"10" sensor:@"0" vertical:@"2" offset:@"0"];
     [lib sendCommand:@"SIZE 100 mm, 120 mm\r\n"];
     [lib sendCommand:@"SPEED 4\r\n"];
     [lib sendCommand:@"DENSITY 10\r\n"];

@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<DiscoveredDevice> _foundBleUARTDevices = [];
   final _formKey = GlobalKey<FormState>();
   String? _testString;
-  String? _uuid;
+  String _uuid = "uuid null";
 
   @override
   void initState() {
