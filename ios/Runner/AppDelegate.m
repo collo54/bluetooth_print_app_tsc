@@ -3,7 +3,7 @@
 #include "TSCSDK.h"
 //#include <TSCLIB/TSCLIB.h>
 
-TSCSDK *lib = [TSCSDK new];
+
 NSMutableArray* deviceList;
 CBPeripheral* CP;
 NSString *TargetName;
@@ -49,7 +49,7 @@ NSString *TargetName;
      return;
     }
 
-    [weakSelf viewLoad];
+   // [weakSelf viewLoad];
     [weakSelf tscTestPrint: blePrinter];
     int batteryLevel = [weakSelf getBatteryLevel];
 
@@ -80,11 +80,6 @@ NSString *TargetName;
   }
 }
 
-- (void)viewLoad {
-    //[super viewDidLoad];
-    lib = [TSCSDK new];
-    deviceList = [lib searchBLEDevice: 2];
-}
 
 //- (IBAction)send:(UIButton *)sender
 - (void) tscTestPrint:(NSString *)myString {
@@ -97,8 +92,7 @@ NSString *TargetName;
             [lib openportBLE:((CBPeripheral *)deviceList[i])];
         }
     } */
-    
-    [lib openportMFI:@"com.issc.datapath"];
+    TSCSDK *lib = [TSCSDK new];    [lib openportMFI:@"com.issc.datapath"];
     //NSData *status = [lib printer_status];
     //0x00:Normal, 0x01:Head opened, 0x10:Pause
     
